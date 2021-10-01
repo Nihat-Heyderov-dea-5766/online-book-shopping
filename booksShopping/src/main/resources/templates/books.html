@@ -25,7 +25,7 @@ td:hover{font-weight: bold;color:blue;cursor:pointer}
 
 <thead>
 <tr>
-<th>ID</th><th>Ad</th>
+<th>ID</th><th>Ad</th><th>Tesvir</th>
 </tr>
 </thead>
 
@@ -33,6 +33,7 @@ td:hover{font-weight: bold;color:blue;cursor:pointer}
 <tr th:each="book : ${books}">
 <td th:text="${book.id}"></td>
 <td th:text="${book.name}"></td>
+<td th:text="${book.description}"></td>
 </tr>
 </tbody>
 
