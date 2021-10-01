@@ -1,0 +1,42 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Kitablar</title>
+<style>
+table,tr,td{
+border:3px solid green;}
+table{border-collapse:collapse; width:100%;}
+th{padding:5px;background-color: gray;}
+td{background-color: black;color:white;}
+td:hover{font-weight: bold;color:blue;cursor:pointer}
+ #new-book-button{display:block;padding:5px 10px;background-color: #ff471a;width: 150px;text-align:center;
+ border-radius: 10px; text-decoration:none;}
+ #new-book-button:hover{
+ background-color: #991f00;
+ cursor:pointer;
+ }
+</style>
+</head>
+<body>
+
+<a th:href="@{/books/new}" id="new-book-button">Yeni Kitab</a>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th><th>Ad</th>
+</tr>
+</thead>
+
+<tbody>
+<tr th:each="book : ${books}">
+<td th:text="${book.id}"></td>
+<td th:text="${book.name}"></td>
+</tr>
+</tbody>
+
+</table>
+</body>
+</html>
+
