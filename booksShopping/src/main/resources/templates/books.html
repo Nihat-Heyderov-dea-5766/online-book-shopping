@@ -25,7 +25,7 @@ td:hover{font-weight: bold;color:blue;cursor:pointer}
 
 <thead>
 <tr>
-<th>ID</th><th>Ad</th><th>Tesvir</th>
+<th>ID</th><th>Ad</th><th>Tesvir</th><th>Qiymet</th><th>Muellif</th><th>Seifesayi</th><th>Sekil</th>
 </tr>
 </thead>
 
@@ -34,6 +34,11 @@ td:hover{font-weight: bold;color:blue;cursor:pointer}
 <td th:text="${book.id}"></td>
 <td th:text="${book.name}"></td>
 <td th:text="${book.description}"></td>
+<td th:text="${book.price}"></td>
+<td th:text="${book.author}"></td>
+<td th:text="${book.pageCount}"></td>
+
+
 </tr>
 </tbody>
 
