@@ -2,23 +2,42 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Yeni Kitab</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+<style>#book-register-form{width:200px;margin:auto;}
 
+</style>
 </head>
 <body>
-<h1>Yeni Kitab</h1>
-<form th:action="@{/books/new-book-process}" method="POST" th:object="${book}">
+<h1 style="text-align:center">Yeni Kitab</h1>
+<form th:action="@{/books/new-book-process}" method="POST" th:object="${book}" id="book-register-form">
+<div class="form-group">
 <label for="book-name">Ad:</label>
-<input id="book-name" th:field="*{name}"/>
-<label for="book-description">Tesvir:</label>
-<textarea id="book-description" th:field="*{description}"></textarea>
-<label for="book-price">Qiymet:</label>
-<input type="number" id="book-price" th:field="*{price}"/>
-<label for="book-author">Muellif:</label>
-<input id="book-author" th:field="*{author}"/>
-<label for="book-page-count">Seifesayi:</label>
-<input type="number" id="book-page-count" th:field="*{pageCount}"/>
+<input class="form-control" id="book-name" th:field="*{name}"/>
+</div>
 
-<input type="submit" value="Qeydiyyat">
+<div class="form-group">
+<label for="book-description">Tesvir:</label>
+<textarea class="form-control" id="book-description" th:field="*{description}"></textarea>
+</div>
+
+<div class="form-group">
+<label for="book-price">Qiymet:</label>
+<input class="form-control" type="number" id="book-price" th:field="*{price}"/>
+</div>
+
+<div class="form-group">
+<label for="book-author">Muellif:</label>
+<input class="form-control" id="book-author" th:field="*{author}"/>
+</div>
+
+<div class="form-group">
+<label for="book-page-count">Seifesayi:</label>
+<input class="form-control" type="number" id="book-page-count" th:field="*{pageCount}"/>
+</div>
+
+
+<input class="btn btn-success" type="submit" value="Qeydiyyat">
+<a th:href="@{/books}">Kitablarin siyahisi</a>
 </form>
 
 </body>

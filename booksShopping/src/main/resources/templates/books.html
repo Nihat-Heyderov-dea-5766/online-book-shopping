@@ -15,12 +15,20 @@ td:hover{font-weight: bold;color:blue;cursor:pointer}
  background-color: #991f00;
  cursor:pointer;
  }
+ #book-home-page{
+ display:block;padding:5px 10px;background-color:#66c91a;width: 150px;text-align:center;
+ border-radius: 10px; text-decoration:none;
+ }
+  #book-home-page:hover{
+ background-color: #559623;
+ cursor:pointer;
+ }
 </style>
 </head>
 <body>
 
 <a th:href="@{/books/new}" id="new-book-button">Yeni Kitab</a>
-
+<a th:href="@{/}" id="book-home-page">home</a>
 <table>
 
 <thead>
