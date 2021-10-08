@@ -1,5 +1,7 @@
 package az.developia.booksShopping.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +22,12 @@ public class CustomController {
 private BookDAO bookDAO;
 
 @GetMapping(path="/customer")
-public String showCustomerPage(){
-	
+public String showCustomerPage(Model model){
+	ArrayList<String> books = new ArrayList();
+   for(int i=1;i<=100;i++) {
+	   books.add("");
+   }
+	model.addAttribute("books", books);
 	return "customer";
 }
 

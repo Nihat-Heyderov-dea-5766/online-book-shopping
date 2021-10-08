@@ -4,12 +4,27 @@
 
 <title>Alici</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link th:href="@{/styles/customer.css}" rell="stylesheet">
+ 
+
 </head>
 <body>
 <div th:replace="menu :: menu"></div>
-<h1></h1>
-
+<h1>Alici</h1>
+<div id="main-content">
+<div id="book-container">
+<div class="book" th:each="book : ${books}">
+<span class="book-image"></span>
+<span class="book-name"></span>
+<span class="book-price"></span>
+<span class="book-description"></span>
+<span class="book-author"></span>
+<span class="book-page-count"></span>
+<div class="add-to-basket"><button class="add-to-basket-btn btn btn-primary">Sebete at</button></div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
