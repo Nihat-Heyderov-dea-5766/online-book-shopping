@@ -19,26 +19,31 @@
 
 <label for="book-name">Ad:</label>
 <input class="form-control" id="book-name" th:field="*{name}"/>
+<span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-description">Tesvir:</label>
 <textarea class="form-control" id="book-description" th:field="*{description}"></textarea>
+<span class="error-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-price">Qiymet:</label>
 <input class="form-control" type="number" id="book-price" th:field="*{price}"/>
+<span class="error-message" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-author">Muellif:</label>
 <input class="form-control" id="book-author" th:field="*{author}"/>
+<span class="error-message" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span>
 </div>
 
 <div class="form-group">
 <label for="book-page-count">Seifesayi:</label>
 <input class="form-control" type="number" id="book-page-count" th:field="*{pageCount}"/>
+<span class="error-message" th:if="${#fields.hasErrors('pageCount')}" th:errors="*{pageCount}"></span>
 </div>
 
 

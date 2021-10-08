@@ -1,9 +1,15 @@
 package az.developia.booksShopping.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Book {
@@ -11,10 +17,22 @@ public class Book {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	@NotEmpty(message="bos qoymaq olmaz")
+	@Size(min=2,max=30,message="Minimum 2  Maxsimum 30 simvol lazimdir")
+	@Column(columnDefinition="varchar(30)")
 	private String name;
+	@Column(columnDefinition="varchar(300)")
+	@Size(max=300,message="Maxsimum 300 simvol lazimdir")
 	private String description;
+	@Min(value=0,message="Minumum 0 yazmaq olar")
+	@Max(value=1000,message="Maxsimum 1000 yazmaq olar")
+	@NotNull(message="bos qoymaq olmaz")
 	private Double price;
+	@Column(columnDefinition="varchar(30)")
+	@Size(max=30,message="Maxsimum 30 simvol lazimdir")
 	private String author;
+	@Min(value=0,message="Minumum 0 yazmaq olar")
+	@Max(value=10000,message="Maxsimum 10000 yazmaq olar")
 	private Integer pageCount;
 	private String image;
 	private String username;
