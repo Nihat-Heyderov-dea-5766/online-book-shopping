@@ -1,39 +1,38 @@
 <!DOCTYPE>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="utf-8">
 <title>Kitablar</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
-table,tr,td{
-border:3px solid green;}
-table{border-collapse:collapse; width:100%;}
-th{padding:5px;background-color: gray;}
-td{background-color: black;color:white;}
-td:hover{font-weight: bold;color:blue;cursor:pointer}
- #new-book-button{display:block;padding:5px 10px;background-color: #ff471a;width: 150px;text-align:center;
- border-radius: 10px; text-decoration:none;}
- #new-book-button:hover{
- background-color: #991f00;
- cursor:pointer;
- }
- #book-home-page{
- display:block;padding:5px 10px;background-color:#66c91a;width: 150px;text-align:center;
- border-radius: 10px; text-decoration:none;
- }
-  #book-home-page:hover{
- background-color: #559623;
- cursor:pointer;
- }
+
+ 
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8"
+src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+
+<script>
+$(document).ready(function() {
+$('#books-table').DataTable();
+});
+</script>
 </head>
 <body>
-
-<a th:href="@{/books/new}" id="new-book-button">Yeni Kitab</a>
-<a th:href="@{/}" id="book-home-page">home</a>
-<table>
+<div th:replace="menu :: menu"></div>
+<div class="container-fluid">
+<a class="btn btn-success" th:href="@{/books/new}" id="new-book-button">Yeni Kitab</a>
+<a  class="btn btn-primary" th:href="@{/}" id="book-home-page">Esas seife</a>
+<div style="height:5px"></div>
+<table id="books-table" class="table table-hover table-bordered table-striped">
 
 <thead>
 <tr>
-<th>ID</th><th>Ad</th><th>Tesvir</th><th>Qiymet</th><th>Muellif</th><th>Seifesayi</th><th>Sekil</th>
+<th>ID</th><th>Ad</th><th>Tesvir</th><th>Qiymet</th><th>Muellif</th><th>Seifesayi</th><th>Sekil</th><th>Emeliyyat</th>
 </tr>
 </thead>
 
@@ -45,12 +44,15 @@ td:hover{font-weight: bold;color:blue;cursor:pointer}
 <td th:text="${book.price}"></td>
 <td th:text="${book.author}"></td>
 <td th:text="${book.pageCount}"></td>
-
-
+<td th:text="${book.image}"></td>
+<td><a th:href="@{/books/delete/{id} (id=${book.id})}" class="btn btn-danger"
+ th:onclick="if(!(confirm('kitabi silmeye eminsiniz?'))) return false" >Sil</a><a th:href="@{/books/edit/{id} (id=${book.id})}" class="btn btn-success">Redakte</a></td>
 </tr>
 </tbody>
 
 </table>
+</div>
+
 </body>
 </html>
 
