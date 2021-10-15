@@ -1,0 +1,34 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Giris</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+<style >
+.error-message{color:red;}
+</style>
+</head>
+<body>
+<div th:replace="menu :: menu"></div>
+<h1 style="text-align:center;">Yeni Hesab yarat</h1>
+<div style="width:300px;margin: auto;">
+<form th:action="@{/creat-account-process}" method="POST" class="form" th:object="${user}">
+
+<div class="form-group">
+<label for="username">Isdifadeci adi:</label>
+<input class="form-control" type="text" id="username" th:field="*{username}" name="username" placeholder="Isdifadeci adi">
+<span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+</div>
+<div class="form-group">
+<label for="username">Sifre:</label>
+<input class="form-control" type="password" id="password" th:field="*{password}" name="password" placeholder="Sifre">
+<span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+</div>
+<button class="btn btn-success" type="submit">Hesab yarat</button>
+<a class="btn btn-primary" th:href="@{/show-login}">Giris</a>
+</form>
+</div>
+</body>
+</html>
+
