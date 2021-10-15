@@ -10,34 +10,98 @@
 
 </head>
 <body>
+<!--HTML BEGIN-->
 <div th:replace="menu :: menu"></div>
 
 <div id="main-content">
-<div id="book-container">
-<div class="book" th:each="book : ${books}">
-<span class="book-image"><img style="width:10%;" alt="" th:src="@{/images/41oBJp9leBL.jpg}"></span>
-<span class="book-name" th:text="${book.name}" th:title="${book.name}"></span>
-<span class="book-price" th:text="${book.price}"></span>
-<span class="book-description"th:text="${book.description}" th:title="${book.description}"></span>
-<span class="book-author"th:text="${book.author}" th:title="${book.author}"></span>
-<span class="book-page-count"th:text="${book.pageCount}"></span>
-<div class="add-to-basket"><button class="add-to-basket-btn btn btn-primary">Sebete at</button></div>
+<button id='open-basket-btn' class='btn btn-primary'>Səbət 
+<span class='badge badge-light' id="basket-book-count">0</span></button>
+<input id='search-input' class='form-control' placeholder='Axtarış'/>
 </div>
-</div>
-</div>
-<button id="open-basket-btn" class="btn btn-primary">Sebet <span class="badge badge-light">10</span></button>
-<input id="search-input" class="form-control" placeholder="Axtaris">
+<!--HTML END-->
 <script >
+//JAVASCRIPT BEGIN
+//REFRESH END
 var xht = new XMLHTTPRequest();
+var booksArrayGlobal=[];
+var basketBooks=[];
+var basketBooksFromStorage= localStorage.getItem('basketBooks')
+if(basketBooksFromStorage==null){
+	localStorage.setItem('basket','[]')
+}else{
+	basketBooks=JSON.parse(basketBooksFromStorage)
+}
+var openBasketButton = document.getElementById("open-basket-btn")
+var basketBookCount = document.getElementById("basket-book-count")
+mainContent.innerHTML=mainContentHTML;
 xht.onreadystatechange = function(){
 	if(this.readyState == 4 && this.status == 200){
 		var responseJSON=this.responseText
 		var booksArray = JSON.parse(responseJSON);
 		console.log(booksArray)
+		booksArrayGlobal = booksArray.slice();
 	}
 };
 xht.open("GET","/rest/books");
 xht.send();
+
+var mainContent=document.getElementById('main-content');
+var mainContentHTML="";
+for(var i=0;i<booksArray.length;i++){
+var book=booksArray[i];
+mainContentHTML+="<div class='book-container'>";
+mainContentHTML+="<div class='book'>";
+mainContentHTML+="<span class='book-image'></span>";
+mainContentHTML+="<span class='book-name' title='"+
+book.name+"'>"+book.name+"</span>";
+mainContentHTML+="<span class='book-price' title='"+
+book.price+"'>"+book.price+"</span>";
+mainContentHTML+="<span class='book-description' title='"+
+book.description+"'>"+book.description+"</span>";
+mainContentHTML+="<span class='book-author' title='"+
+book.author+"'>"+book.author+"</span>";
+mainContentHTML+="<span class='book-page-count' title='"+
+book.pageCount+"'>"+book.pageCount+"</span> ";
+mainContentHTML+="<div class='add-to-basket'><button "+
+"class='add-to-basket-btn btn btn-primary' onclick='addToBasket("+book.id+")'>Səbətə at</button></div>";
+mainContentHTML+="</div></div>";
+}
+mainContent.innerHTML=mainContentHTML;
+
+
+
+
+//REFRESH END
+//FUNCTION BEGIN
+function addToBasket(bookId){
+	var bookExitsInBasket =true;
+	
+	for(var i=0;i<basketBooks.lenght;i++){
+		var basketBook = basketBooks[i]
+		if(basket.book.id == bookId){
+			basketBook.count++;
+			bookExitsInBasket=true;
+			break;
+		}
+	}
+	if(bookExitsInBasket){
+		
+	}else{
+		for(var i=0;i<booksArrayGlobal.lenght;i++){
+			if(booksArrayGlobal[i].id==bookId){
+				var basketBook ={count:1,book:booksArrayGlobal[i]}
+				basketBooks.push(basketBook).break
+			}
+		}	
+	}
+	
+	openBasketButton.style.display="none";
+	basketBookCount.innerHTML = basketBooks.lenght;
+	localStorage.setItem("bookBaskets",JSON.stringfy(basketBooks))
+	setTimeout(function(){openBasketButton.style.display="block";},300)
+}
+//FUNCTION END
+//JAVASCRIPT END
 </script>
 </body>
 </html>
