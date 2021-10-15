@@ -31,6 +31,7 @@ public String showBooks(Model model){
 	//List<Book> books = bookDAO.findAll();
 	List<Book> books = bookDAO.findAllByUsername(mySession.getUsername());
 	model.addAttribute("books", books);
+	model.addAttribute("username", "Isdifadeci :"+mySession.getUsername());
 	return "books";
 }
 
