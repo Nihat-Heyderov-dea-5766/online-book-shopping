@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import az.developia.booksShopping.config.MySession;
 import az.developia.booksShopping.dao.BookDAO;
 import az.developia.booksShopping.model.Book;
 
@@ -22,9 +23,13 @@ public class BookController {
 @Autowired
 private BookDAO bookDAO;
 
+@Autowired
+private MySession mySession;
+
 @GetMapping(path="/books")
 public String showBooks(Model model){
-	List<Book> books = bookDAO.findAll();
+	//List<Book> books = bookDAO.findAll();
+	List<Book> books = bookDAO.findAllByUsername(mySession.getUsername());
 	model.addAttribute("books", books);
 	return "books";
 }
@@ -45,7 +50,7 @@ public String saveBook(@Valid @ModelAttribute(name="book")Book book,
 		return "new-book";
 	}
 	book.setImage("book.jpg");
-	book.setUsername("nihat");
+	book.setUsername(mySession.getUsername());
 	List<Book> books = bookDAO.findAll();
 	model.addAttribute("books", books);
 	bookDAO.save(book);

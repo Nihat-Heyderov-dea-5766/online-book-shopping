@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import az.developia.booksShopping.config.MySession;
 import az.developia.booksShopping.dao.BookDAO;
 import az.developia.booksShopping.model.Book;
 
@@ -21,13 +22,14 @@ public class CustomController {
 @Autowired
 private BookDAO bookDAO;
 
+@Autowired
+private MySession mySession;
+
 @GetMapping(path="/customer")
 public String showCustomerPage(Model model){
-	ArrayList<String> books = new ArrayList();
-   for(int i=1;i<=100;i++) {
-	   books.add("");
-   }
+	List<Book> books = bookDAO.findAll();
 	model.addAttribute("books", books);
+	System.out.println(mySession.getUsername());
 	return "customer";
 }
 
