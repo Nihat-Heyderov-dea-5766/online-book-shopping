@@ -6,7 +6,9 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link th:href="@{/styles/customer.css}" rell="stylesheet">
- 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
 <body>
@@ -14,10 +16,35 @@
 <div th:replace="menu :: menu"></div>
 
 <div id="main-content">
-<button id='open-basket-btn' class='btn btn-primary'>Səbət 
+<button type="button" data-toggle="modal" data-target="#basketModal" onclick="openBasket()"
+ id='open-basket-btn' class='btn btn-primary'>Səbət 
 <span class='badge badge-light' id="basket-book-count">0</span></button>
 <input id='search-input' class='form-control' placeholder='Axtarış'/>
 </div>
+
+<div class="modal fade" id="basketModal">
+<div class="modal-dialog  modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h1 class="modal-title">Səbət</h1>
+<button type="button" class="close" data-dismiss="modal">x</button>
+</div>
+<div class="modal-body">
+
+<table class="table table-hover table-bordered">
+<thead>
+<tr><th>ID</th><th>AD</th><th>Qiymet</th><th>Miqdar</th><th>Umumi qiymet</th><th></th></tr>
+</thead>
+<tbody id="basket-books-table">
+
+</tbody>
+</table>
+
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
+</div>
+</div></div></div>
 <!--HTML END-->
 <script >
 //JAVASCRIPT BEGIN
@@ -31,8 +58,10 @@ if(basketBooksFromStorage==null){
 }else{
 	basketBooks=JSON.parse(basketBooksFromStorage)
 }
+
 var openBasketButton = document.getElementById("open-basket-btn")
 var basketBookCount = document.getElementById("basket-book-count")
+var basketBooksTable = document.getElementById("basket-books-table")
 mainContent.innerHTML=mainContentHTML;
 xht.onreadystatechange = function(){
 	if(this.readyState == 4 && this.status == 200){
@@ -99,6 +128,22 @@ function addToBasket(bookId){
 	basketBookCount.innerHTML = basketBooks.lenght;
 	localStorage.setItem("bookBaskets",JSON.stringfy(basketBooks))
 	setTimeout(function(){openBasketButton.style.display="block";},300)
+}
+
+function openBasket(){
+	var basketBooksTableHTML="";
+	for(var i=0;i<basketBooks.lenght;i++){
+		var basketBook = basketBooks[i]
+		basketBooksTableHTML+="<tr><td>"+basketBook.book.id;
+		basketBooksTableHTML+="</td><td>"+basketBook.book.name;
+	    basketBooksTableHTML+="</td><td>"+basketBook.book.price;
+		basketBooksTableHTML+="</td><td>"+basketBook.book.count;
+		basketBooksTableHTML+="</td><td>"+(basketBook.book.price*basketBook.count);
+		basketBooksTableHTML+="</td><td><button class='btn btn-danger'>X<button>";
+		basketBooksTableHTML+="</td><td>";
+	
+	}
+	basketBooksTable.innerHTML=basketBooksTableHTML
 }
 //FUNCTION END
 //JAVASCRIPT END
