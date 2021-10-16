@@ -5,7 +5,7 @@
 <title>Alici</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link th:href="@{/styles/customer.css}" rell="stylesheet">
+<link th:href="@{/styles/customer.css}" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -49,7 +49,7 @@
 <script >
 //JAVASCRIPT BEGIN
 //REFRESH END
-var xht = new XMLHTTPRequest();
+var xht = new XMLHttpRequest();
 var booksArrayGlobal=[];
 var basketBooks=[];
 var basketBooksFromStorage= localStorage.getItem('basketBooks')
@@ -132,15 +132,15 @@ function addToBasket(bookId){
 
 function openBasket(){
 	var basketBooksTableHTML="";
-	for(var i=0;i<basketBooks.lenght;i++){
-		var basketBook = basketBooks[i]
+	for(var i=0;i<basketBooks.length;i++){
+		var basketBook = basketBooks[i];
 		basketBooksTableHTML+="<tr><td>"+basketBook.book.id;
 		basketBooksTableHTML+="</td><td>"+basketBook.book.name;
 	    basketBooksTableHTML+="</td><td>"+basketBook.book.price;
 		basketBooksTableHTML+="</td><td>"+basketBook.book.count;
 		basketBooksTableHTML+="</td><td>"+(basketBook.book.price*basketBook.count);
 		basketBooksTableHTML+="</td><td><button class='btn btn-danger'>X<button>";
-		basketBooksTableHTML+="</td><td>";
+		basketBooksTableHTML+="</td></tr>";
 	
 	}
 	basketBooksTable.innerHTML=basketBooksTableHTML

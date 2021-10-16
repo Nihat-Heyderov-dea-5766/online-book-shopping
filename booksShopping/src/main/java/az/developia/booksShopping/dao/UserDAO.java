@@ -26,7 +26,7 @@ public class UserDAO {
 		try {
 			Connection conn = datasource.getConnection();
 			PreparedStatement ps = conn
-					.prepareStatement("Select username from users where username=?");
+					.prepareStatement("select username from users where username=?");
 			ps.setString(1,user.getUsername());
 			ResultSet rs = ps.executeQuery();
 		
@@ -37,13 +37,13 @@ public class UserDAO {
 			}else {
 				rs.close();
 				ps.close();
-				ps = conn.prepareStatement("insert into user(username,password,enabled)values (?,?,?);");
+				ps = conn.prepareStatement("insert into users (username,password,enabled) values (?,?,?);");
 				ps.setString(1,user.getUsername());
 				ps.setString(2,"{bcrypt}"+passwordEncoder.encode(user.getPassword()));
 				ps.setByte(3,(byte)1);
 				ps.executeUpdate();
 				ps.close();
-				ps = conn.prepareStatement("insert into authorihies(username,authorihies)values (?,?);");
+				ps = conn.prepareStatement("insert into authorities (username,authority) values (?,?);");
 				ps.setString(1,user.getUsername());
 				ps.setString(2,"ROLE_ADMIN");
 				ps.executeUpdate();

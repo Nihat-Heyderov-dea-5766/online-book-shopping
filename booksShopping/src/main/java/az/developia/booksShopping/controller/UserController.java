@@ -53,6 +53,8 @@ public String saveUser(@Valid @ModelAttribute(name="user")User user,
     if (userExits) {
     	model.addAttribute("userExits","");
 		return "creat-account";
+	}else {
+		userDAO.creatUser(user);
 	}
 	userCreated = true;
 	model.addAttribute("userCreated", "");
