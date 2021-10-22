@@ -52,14 +52,20 @@ public String openNewPage(Model model) {
 
 @PostMapping(path="/books/new-book-process")
 public String saveBook(@Valid @ModelAttribute(name="book")Book book,
-		@RequestParam(value="imageFile",required=false) MultipartFile imageFile,
-		BindingResult result,Model model) {
+		BindingResult result,
+		@RequestParam(value="imageFile",required=true) MultipartFile imageFile,Model model) {
+	System.out.println(imageFile);
 	if(result.hasErrors()) {
 		return "new-book";
 	}
-	book.setImage("book.jpg");
+	//book.setImage("book.jpg");
 	book.setUsername(mySession.getUsername());
-	book.setImage(storageService.store(imageFile));
+	
+	if(imageFile.isEmpty() && book.getId()!=null) {
+		book.setImage(bookDAO.findById(book.getId()).get().getImage());
+	}else {
+		book.setImage(storageService.store(imageFile));}
+	
 	List<Book> books = bookDAO.findAll();
 	model.addAttribute("books", books);
 	bookDAO.save(book);
