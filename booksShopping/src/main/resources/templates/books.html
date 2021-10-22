@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
 #username{display: inline-block;padding:5px;font-size: 24px;font-weight: bold;margin:0px;}
- 
+ .book-image{width:40px;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -45,7 +45,7 @@ $('#books-table').DataTable();
 <td th:text="${book.price}"></td>
 <td th:text="${book.author}"></td>
 <td th:text="${book.pageCount}"></td>
-<td th:text="${book.image}"></td>
+<td><img th:src="@{'/files/'+${book.image}}" class="book-image"></td>
 <td><a th:href="@{/books/delete/{id} (id=${book.id})}" class="btn btn-danger"
  th:onclick="if(!(confirm('kitabi silmeye eminsiniz?'))) return false" >Sil</a><a th:href="@{/books/edit/{id} (id=${book.id})}" class="btn btn-success">Redakte</a></td>
 </tr>
