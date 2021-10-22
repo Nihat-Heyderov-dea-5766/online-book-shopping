@@ -11,7 +11,8 @@
 <body>
 <div th:replace="menu :: menu"></div>
 <h1  th:text="${header}" style="text-align:center; color:green;">Yeni Kitab</h1>
-<form th:action="@{/books/new-book-process}" method="POST" th:object="${book}" id="book-register-form">
+<form th:action="@{/books/new-book-process}" method="POST" th:object="${book}" id="book-register-form"
+enctype="multipart/form-data">
 <div class="form-group">
 
 <input type="hidden"  th:field="*{id}"/>
@@ -46,6 +47,9 @@
 <span class="error-message" th:if="${#fields.hasErrors('pageCount')}" th:errors="*{pageCount}"></span>
 </div>
 
+<div class="form-group"><label for="book-image">Sekil:</label>
+<input class="form-control" type="file" id="book-image" name="imageFile" accept="image/x-png,image/jpeg,image/jpg"/>
+</div>
 
 <input class="btn btn-success" type="submit" value="yadda saxla">
 <a th:href="@{/books}">Kitablarin siyahisi</a>
