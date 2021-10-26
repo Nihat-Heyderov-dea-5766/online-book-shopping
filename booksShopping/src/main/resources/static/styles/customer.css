@@ -18,7 +18,9 @@
 #book-container{width:16.66%}
 }
 #book{height:400px;box-sizing: border-box;border:3px solid green;padding:10px;}
-.book-image{display:block;width:100%;background-color:gray;}
+.book-image{display:block;width:100%;background-color:white;
+background-repeat: no-repeat;background-position: center;background-size: contain;
+ }
 img{width:100%}
 .book-name,.book-price,.book-description,.book-page-count,.book-author{display:block;white-space: nowrap;overflow: hidden; text-overflow: ellipsis;}
 .book-name::before{content: 'Ad: ';}

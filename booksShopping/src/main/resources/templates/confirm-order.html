@@ -1,0 +1,68 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Sifarisin tesdiqlenmesi</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+</head>
+<body>
+<div th:replace="menu :: menu"></div>
+
+<div class="container">
+
+
+<div class="form-group">
+<label for="customer-name">Ad:</label>
+<input class="form-control" id="customer-name" />
+</div>
+<div class="form-group">
+<label for="customer-address">Unvan:</label>
+<input class="form-control" id="customer-adress" />
+</div>
+<div class="form-group">
+<label for="customer-phone">Telefon:</label>
+<input class="form-control" id="customer-phone" />
+</div>
+
+
+
+<button class="btn btn-success" onclick="confirmOrder()">yadda saxla</button>
+
+
+</div>
+<script >
+var customerName = document.getElementById("customer-name")
+var customerAddress = document.getElementById("customer-address")
+var customerPhone = document.getElementById("customer-phone")
+
+var order ={};
+var basketBooksFromStorage= localStorage.getItem('basketBooks')
+if(basketBooksFromStorage==null){
+	localStorage.setItem('basket','[]')
+}else{basketBooks=JSON.parse(basketBooksFromStorage)}
+
+order.basketBooks = basketBooks;
+order.customer = {};
+function confirmOrder(){
+	order.customer.name = customerName;
+	order.customer.address = customerAddress;
+	order.customer.phone = customerPhone;
+	console.log(order);
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			var response = this.reponseText;
+			console.log(JSON.parse(response));
+		}
+	};
+	xhttp.open("POST","",true);
+	xhttp.setRequestHeader("Content-type","/rest/orders","application/json");
+	xhttp.send(JSON.stringfy(order));
+}
+</script>
+</body>
+
+</html>
+
