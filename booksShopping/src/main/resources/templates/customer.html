@@ -21,7 +21,7 @@
 <button type="button" data-toggle="modal" data-target="#basketModal" onclick="openBasket()"
  id='open-basket-btn' class='btn btn-primary'>Səbət 
 <span class='badge badge-light' id="basket-book-count">0</span></button>
-<input id='search-input' class='form-control' placeholder='Axtarış'/>
+<input id='search-input' class='form-control' placeholder='Axtarış' onchange="searchBook(this.value)"/>
 </div>
 
 <div class="modal fade" id="basketModal">
@@ -53,6 +53,11 @@
 <script >
 //JAVASCRIPT BEGIN
 //REFRESH END
+
+var searchTextGlobal='';
+var begin=0;
+var length=20;
+
 var mainContent=document.getElementById('main-content');
 var mainContentHTML="";
 var xht = new XMLHttpRequest();
@@ -105,8 +110,10 @@ xht.onreadystatechange = function(){
 		
 	}
 };
-xht.open("GET","/rest/books");
-xht.send();
+xht.open("POST","/rest/books/search-find-partial",true);
+xht.setRequestHeader("Content-type","application/json");
+var searchObject={search:'',begin:begin,lenght:lenght}
+xht.send(JSON.stringfy(searchObject));
 
 
 
@@ -202,6 +209,42 @@ function calculateTotalPrice(){
 }
 	totalPrice.innerHTML="Umumi qiymet: "+totalPriceNumber+"AZN"
 }
+
+function searchBook(searchText){
+	searchTextGlobal=searchText;
+	xht.open("POST","/rest/books/search-find-patrial",true);
+	xht.setRequestHeader("Content-type","application/json")
+	begin=0;
+	var searchObject = {search : searchText,begin:begin,lenght:lenght};
+	xht.send(JSON.stringify(searchObject));
+}
+var counter=0;
+var allowScroll=true;
+function onScroll(){
+	if(allowScroll){
+		
+	const distanceToBottom = document.body.getBoundingClientRect().bottom;
+	const documentHeight = document.documentElement.clientHeight;
+	//console.log("distanceToBottom:"+distanceToBottom);
+	//console.log("documentHeight:"+documentHeight);
+	if(distanceToBottom < ddocumentHeight + 150){
+		allowScroll=false;
+		counter++;
+		console.log("onScroll"+counter);
+		begin+=20;
+		
+		xht.open("POST","/rest/books/search-find-partial",true);
+		xht.setRequestHeader("Content-type","application/json");
+		var searchObject={search:searchTextGlobal,begin:begin,lenght:lenght}
+		xht.send(JSON.stringfy(searchObject));
+		
+		setTimeout(function(){allowScroll=true},1000);
+}
+	}
+	
+}
+window.addEventListener("scroll",onScroll);
+
 //FUNCTION END
 //JAVASCRIPT END
 </script>
