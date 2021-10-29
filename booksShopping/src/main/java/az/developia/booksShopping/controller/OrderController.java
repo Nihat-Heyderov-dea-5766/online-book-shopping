@@ -35,6 +35,10 @@ public String showConfirmOrderPage(){
 	
 	return "confirm-order";
 }
-
+@GetMapping(path="/order-confirmation-message")
+public String showOrderConfirmationPage(){
+	
+	return "order-confirmation-message";
+}
 
 }
