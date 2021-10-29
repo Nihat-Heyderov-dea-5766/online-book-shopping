@@ -24,7 +24,10 @@
 <label for="customer-phone">Telefon:</label>
 <input class="form-control" id="customer-phone" />
 </div>
-
+<div class="form-group">
+<label for="order-note">Note:</label>
+<input class="form-control" id="order-note" />
+</div>
 
 
 <button class="btn btn-success" onclick="confirmOrder()">yadda saxla</button>
@@ -35,19 +38,21 @@
 var customerName = document.getElementById("customer-name")
 var customerAddress = document.getElementById("customer-address")
 var customerPhone = document.getElementById("customer-phone")
+var orderNote = document.getElementById("order-note")
 
 var order ={};
 var basketBooksFromStorage= localStorage.getItem('basketBooks')
 if(basketBooksFromStorage==null){
-	localStorage.setItem('basket','[]')
+	localStorage.setItem('basketBooks','[]');
 }else{basketBooks=JSON.parse(basketBooksFromStorage)}
 
 order.basketBooks = basketBooks;
 order.customer = {};
 function confirmOrder(){
-	order.customer.name = customerName;
-	order.customer.address = customerAddress;
-	order.customer.phone = customerPhone;
+	order.customer.name = customerName.value;
+	order.customer.address = customerAddress.value;
+	order.customer.phone = customerPhone.value;
+	order.note = orderNote.value;
 	console.log(order);
 	
 	var xhttp = new XMLHttpRequest();
@@ -55,8 +60,16 @@ function confirmOrder(){
 		if(this.readyState == 4 && this.status == 200){
 			var response = this.reponseText;
 			console.log(JSON.parse(response));
+			localStorage.setItem('basketBooks','[]')
+			window.location.href="/customer"
 		}
 	};
+	
+	var totalPrice =0;
+	for(var i =0;i<basketBooks.length;i++){
+		totalPrice=basketBooks[i].book.price*basketBooks[i].book.count;
+	}
+	order.basketBooks = totalPrice
 	xhttp.open("POST","",true);
 	xhttp.setRequestHeader("Content-type","/rest/orders","application/json");
 	xhttp.send(JSON.stringfy(order));

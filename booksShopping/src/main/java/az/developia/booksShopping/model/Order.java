@@ -1,6 +1,7 @@
 package az.developia.booksShopping.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -64,6 +65,9 @@ public void setCustomer(Customer customer) {
 	this.customer = customer;
 }
 public List<BasketBook> getBasketBooks() {
+	if(basketBooks==null) {
+		basketBooks=new ArrayList<BasketBook>();
+	}
 	return basketBooks;
 }
 public void setBasketBooks(List<BasketBook> basketBooks) {
