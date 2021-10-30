@@ -12,7 +12,7 @@ public class BasketBook {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String count;
+	private Integer count;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="book_id")
 	private Book book;
@@ -22,10 +22,10 @@ public class BasketBook {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getCount() {
+	public int getCount() {
 		return count;
 	}
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.count = count;
 	}
 	public Book getBook() {
