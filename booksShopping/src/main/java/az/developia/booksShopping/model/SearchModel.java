@@ -3,7 +3,7 @@ package az.developia.booksShopping.model;
 public class SearchModel {
 private String search;
 private Integer begin;
-private Integer lenght;
+private Integer length;
 
 public Integer getBegin() {
 	return begin;
@@ -12,13 +12,14 @@ public Integer getBegin() {
 public void setBegin(Integer begin) {
 	this.begin = begin;
 }
+ 
 
-public Integer getLenght() {
-	return lenght;
+public Integer getLength() {
+	return length;
 }
 
-public void setLenght(Integer lenght) {
-	this.lenght = lenght;
+public void setLength(Integer length) {
+	this.length = length;
 }
 
 public String getSearch() {

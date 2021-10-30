@@ -18,7 +18,7 @@ import az.developia.booksShopping.model.Book;
 import az.developia.booksShopping.model.Order;
 
 @RestController
-@RequestMapping(path="/rest/books")
+@RequestMapping(path="/rest/orders")
 public class OrderRestController {
 	 
 	@Autowired

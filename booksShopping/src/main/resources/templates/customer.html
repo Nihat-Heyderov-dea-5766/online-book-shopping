@@ -112,8 +112,9 @@ xht.onreadystatechange = function(){
 };
 xht.open("POST","/rest/books/search-find-partial",true);
 xht.setRequestHeader("Content-type","application/json");
-var searchObject={search:'',begin:begin,lenght:lenght}
-xht.send(JSON.stringfy(searchObject));
+var searchObject={search:'',begin:begin,length:length};
+
+xht.send(JSON.stringify(searchObject));
 
 
 
@@ -124,7 +125,7 @@ xht.send(JSON.stringfy(searchObject));
 function addToBasket(bookId){
 	var bookExitsInBasket =true;
 	
-	for(var i=0;i<basketBooks.lenght;i++){
+	for(var i=0;i<basketBooks.length;i++){
 		var basketBook = basketBooks[i]
 		if(basket.book.id == bookId){
 			basketBook.count++;
@@ -135,7 +136,7 @@ function addToBasket(bookId){
 	if(bookExitsInBasket){
 		
 	}else{
-		for(var i=0;i<booksArrayGlobal.lenght;i++){
+		for(var i=0;i<booksArrayGlobal.length;i++){
 			if(booksArrayGlobal[i].id==bookId){
 				var basketBook ={count:1,book:booksArrayGlobal[i]}
 				basketBooks.push(basketBook).break
@@ -144,8 +145,8 @@ function addToBasket(bookId){
 	}
 	
 	openBasketButton.style.display="none";
-	basketBookCount.innerHTML = basketBooks.lenght;
-	localStorage.setItem("bookBaskets",JSON.stringfy(basketBooks))
+	basketBookCount.innerHTML = basketBooks.length;
+	localStorage.setItem("bookBaskets",JSON.stringify(basketBooks))
 	setTimeout(function(){openBasketButton.style.display="block";},300)
 }
 
@@ -161,9 +162,9 @@ function deleteBasketBook(bookId){
 		}
 	}
 	openBasketButton.style.display="none";
-	basketBookCount.innerHTML = basketBooks.lenght;
+	basketBookCount.innerHTML = basketBooks.length;
 	setTimeout(function(){openBasketButton.style.display="block";},300)
-	localStorage.setItem('',JSON.stringfy(basketBooks))
+	localStorage.setItem('',JSON.stringify(basketBooks))
 	fillBasketTable();
 }
 
@@ -215,7 +216,7 @@ function searchBook(searchText){
 	xht.open("POST","/rest/books/search-find-patrial",true);
 	xht.setRequestHeader("Content-type","application/json")
 	begin=0;
-	var searchObject = {search : searchText,begin:begin,lenght:lenght};
+	var searchObject = {search : searchText,begin:begin,length:length};
 	xht.send(JSON.stringify(searchObject));
 }
 var counter=0;
@@ -235,8 +236,8 @@ function onScroll(){
 		
 		xht.open("POST","/rest/books/search-find-partial",true);
 		xht.setRequestHeader("Content-type","application/json");
-		var searchObject={search:searchTextGlobal,begin:begin,lenght:lenght}
-		xht.send(JSON.stringfy(searchObject));
+		var searchObject={search:searchTextGlobal,begin:begin,length:length}
+		xht.send(JSON.stringify(searchObject));
 		
 		setTimeout(function(){allowScroll=true},1000);
 }

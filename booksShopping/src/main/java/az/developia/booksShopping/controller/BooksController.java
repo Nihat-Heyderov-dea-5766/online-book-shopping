@@ -37,6 +37,6 @@ public List<Book> findAllSearch(@RequestBody SearchModel search){
 }
 @PostMapping(path="/search-find-partial")
 public List<Book> findAllSearchFindPatrial(@RequestBody SearchModel search){
-	return bookDAO.findAllSearchAllFieldsFindP(search.getSearch(), search.getBegin(), search.getLenght());
+	return bookDAO.findAllSearchAllFieldsFindP(search.getSearch(), search.getBegin(), search.getLength());
 }
 }
