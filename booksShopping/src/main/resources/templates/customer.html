@@ -45,7 +45,7 @@
 <span id="total-price"></span>
 </div>
 <div class="modal-footer">
-<a  class="btn btn-success" th:href="@{/confirm-order}">Sifarisi tesdiqle</a>
+<button  class="btn btn-success" onclick="orderConfirm()">Sifarisi tesdiqle</button>
 <button type="button" class="btn btn-danger" data-dismiss="modal">Bağla</button>
 </div>
 </div></div></div>
@@ -245,6 +245,21 @@ function onScroll(){
 	
 }
 window.addEventListener("scroll",onScroll);
+
+function orderConfirm(){
+	var xht = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			window.location.href="/confirm-order";
+		}
+	};
+	
+	xhttp.open("POST","/rest/orders/save-basket-books",true);
+	xhttp.setRequestHeader("Content-type","application/json");
+	xhttp.send(JSON.stringify(basketBooks));
+	
+}
 
 //FUNCTION END
 //JAVASCRIPT END
