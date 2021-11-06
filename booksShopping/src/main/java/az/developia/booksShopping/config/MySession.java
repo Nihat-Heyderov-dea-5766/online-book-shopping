@@ -38,5 +38,11 @@ private List<BasketBook> basketbooks;
 	public void destroySession() {
 		System.out.println("MySession>destroySession");
 	}
+	public List<BasketBook> getBasketbooks() {
+		return basketbooks;
+	}
+	public void setBasketbooks(List<BasketBook> basketbooks) {
+		this.basketbooks = basketbooks;
+	}
 	
 }

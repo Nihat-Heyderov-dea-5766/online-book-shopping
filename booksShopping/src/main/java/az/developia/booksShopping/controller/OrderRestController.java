@@ -79,7 +79,7 @@ public List<Order>findByUsername(@PathVariable(name="username")String username){
 @PostMapping(path="/save-basket-books")
 public Boolean saveBasketBooks(@RequestBody List<BasketBook> basketBooks) {
 	System.out.println(basketBooks);
-	mySession.setBasketBooks(basketBooks);
+	mySession.setBasketbooks(basketBooks);
 	return true;
 }
 }

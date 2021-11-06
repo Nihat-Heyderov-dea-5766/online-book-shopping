@@ -16,7 +16,7 @@ public class HomeController {
 	
 @GetMapping(path={"/home","/"})
 public String showHomePage() {
-	System.out.println(mySession.getBasketBook());
+	System.out.println(mySession.getBasketbooks());
 	return "home";
 }
 }
