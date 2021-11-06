@@ -14,30 +14,50 @@ import org.springframework.stereotype.Component;
 import az.developia.booksShopping.model.BasketBook;
 
 @Component
-@Scope(value="session",proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class MySession {
-private String username;
-private List<BasketBook> basketbooks;
-	public MySession(){
+	private String username;
+
+	private List<BasketBook> basketBooks;
+
+	public MySession() {
 		System.out.println("MySession>constructor");
 		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
 		String username = loggedInUser.getName();
-		this.username=username;
+		this.username = username;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	@PostConstruct
 	public void initSession() {
 		System.out.println("MySession>initSession");
 	}
+
+	public List<BasketBook> getBasketBooks() {
+		return basketBooks;
+	}
+
+	public void setBasketBooks(List<BasketBook> basketBooks) {
+		this.basketBooks = basketBooks;
+	}
+
 	@PreDestroy
 	public void destroySession() {
 		System.out.println("MySession>destroySession");
 	}
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> Stashed changes
 	public List<BasketBook> getBasketbooks() {
 		return basketbooks;
 	}
@@ -45,4 +65,5 @@ private List<BasketBook> basketbooks;
 		this.basketbooks = basketbooks;
 	}
 	
+>>>>>>> 867e20b5f6c4b673c2bfa9b9a8927200eac97772
 }

@@ -5,38 +5,48 @@
 <title>Sifarisin tesdiqlenmesi</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+<style>#confirm-order-form{width:200px;margin:auto;}
+.error-message{color:red;}
+</style>
 </head>
 <body>
 <div th:replace="menu :: menu"></div>
 
-<div class="container">
+<div class="container" id="confirm-order-form">
+<form th:action="@{/confirm-order-process}" th:method="post" th:object="${customer}">
+
 
 
 <div class="form-group">
 <label for="customer-name">Ad:</label>
-<input class="form-control" id="customer-name" />
+<input class="form-control" id="customer-name" th:field="*{name}"/>
+<span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 </div>
 <div class="form-group">
-<label for="customer-address">Unvan:</label>
-<input class="form-control" id="customer-adress" />
+<label for="customer-address" >Unvan:</label>
+<input class="form-control" id="customer-adress" th:field="*{address}"/>
+<span class="error-message" th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}"></span>
 </div>
 <div class="form-group">
 <label for="customer-phone">Telefon:</label>
-<input class="form-control" id="customer-phone" />
+<input class="form-control" id="customer-phone" th:field="*{phone}"/>
+<span class="error-message" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
 </div>
 <div class="form-group">
 <label for="customer-email">Email:</label>
-<input class="form-control" id="customer-email" />
+<input class="form-control" id="customer-email" th:field="*{email}"/>
+<span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 </div>
 <div class="form-group">
 <label for="order-note">Note:</label>
-<input class="form-control" id="order-note" />
+<input class="form-control" id="order-note" th:field="*{note}"/>
+<span class="error-message" th:if="${#fields.hasErrors('note')}" th:errors="*{note}"></span>
 </div>
 
 
-<button class="btn btn-success" onclick="confirmOrder()">yadda saxla</button>
+<button class="btn btn-success" type="submit">yadda saxla</button>
 
-
+</form>
 </div>
 <script >
 var customerName = document.getElementById("customer-name")

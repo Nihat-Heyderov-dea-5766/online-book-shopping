@@ -79,5 +79,11 @@ public String getUsername() {
 public void setUsername(String username) {
 	this.username = username;
 }
+@Override
+public String toString() {
+	return "Order [id=" + id + ", note=" + note + ", register=" + register + ", totalPrice=" + totalPrice
+			+ ", customer=" + customer + ", basketBooks=" + basketBooks + ", username=" + username + "]";
+}
+
 
 }
