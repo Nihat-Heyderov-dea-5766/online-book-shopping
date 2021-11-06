@@ -228,7 +228,7 @@ function onScroll(){
 	const documentHeight = document.documentElement.clientHeight;
 	//console.log("distanceToBottom:"+distanceToBottom);
 	//console.log("documentHeight:"+documentHeight);
-	if(distanceToBottom < ddocumentHeight + 150){
+	if(distanceToBottom < documentHeight + 150){
 		allowScroll=false;
 		counter++;
 		console.log("onScroll"+counter);

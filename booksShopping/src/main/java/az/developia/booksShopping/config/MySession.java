@@ -52,18 +52,6 @@ public class MySession {
 	public void destroySession() {
 		System.out.println("MySession>destroySession");
 	}
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> Stashed changes
-	public List<BasketBook> getBasketbooks() {
-		return basketbooks;
-	}
-	public void setBasketbooks(List<BasketBook> basketbooks) {
-		this.basketbooks = basketbooks;
-	}
-	
->>>>>>> 867e20b5f6c4b673c2bfa9b9a8927200eac97772
+
 }

@@ -16,15 +16,7 @@ public class HomeController {
 	
 @GetMapping(path={"/home","/"})
 public String showHomePage() {
-<<<<<<< Updated upstream
-	System.out.println(mySession.getBasketbooks());
-=======
-<<<<<<< HEAD
-	System.out.println(mySession.getBasketBooks());
-=======
-	System.out.println(mySession.getBasketbooks());
->>>>>>> 867e20b5f6c4b673c2bfa9b9a8927200eac97772
->>>>>>> Stashed changes
+
 	return "home";
 }
 }
