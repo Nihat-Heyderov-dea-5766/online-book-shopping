@@ -87,7 +87,7 @@ function confirmOrder(){
 	order.basketBooks = totalPrice
 	xhttp.open("POST","",true);
 	xhttp.setRequestHeader("Content-type","/rest/orders","application/json");
-	xhttp.send(JSON.stringfy(order));
+	xhttp.send(JSON.stringify(order));
 }
 </script>
 </body>
