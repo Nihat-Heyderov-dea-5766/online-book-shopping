@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import az.developia.booksShopping.config.MySession;
 import az.developia.booksShopping.dao.BookDAO;
+import az.developia.booksShopping.dao.CustomerDAO;
 import az.developia.booksShopping.dao.OrderDAO;
 import az.developia.booksShopping.model.BasketBook;
 import az.developia.booksShopping.model.Book;
@@ -35,6 +36,9 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
+	@Autowired
+	private CustomerDAO customerDAO;
+	
 	@GetMapping(path = "/orders")
 	public String showOrdersPage(Model model) {
 		model.addAttribute("orders", orderDAO.findAllByUsername(mySession.getUsername()));
@@ -59,6 +63,23 @@ public class OrderController {
 			BindingResult result) {
 		if (result.hasErrors()) {
 			return "confirm-order";
+		}
+		
+		Customer customerFindByPhone = customerDAO.findByPhone(customer.getPhone());
+		if(customerFindByPhone==null) {
+			Customer customerFindByEmail= customerDAO.findByEmail(customer.getEmail());
+			if(customerFindByEmail==null) {}else {
+				Integer id = customerFindByEmail.getId();
+				customer.setId(id);
+				customerDAO.save(customer);
+				customer = customerDAO.findById(id).get();
+			}
+			
+		}else {
+			Integer id = customerFindByPhone.getId();
+			customer.setId(id);
+			customerDAO.save(customer);
+			customer = customerDAO.findById(id).get();
 		}
 
 		orderService.save(customer);
