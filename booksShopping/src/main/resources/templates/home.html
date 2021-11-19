@@ -11,10 +11,11 @@
 
 <div class="container">
 <h1>Kitab alis verisi saytina xos gelmisiniz</h1>
-<a class="btn btn-primary" th:href="@{/books}">Kitablarin Siyahisi</a>
+<a th:if="${username}" class="btn btn-primary" th:href="@{/books}">Kitablarin Siyahisi</a>
 <a class="btn btn-warning" th:href="@{/customer}">Kitab alis-verisine basla</a>
-<a class="btn btn-success" th:href="@{/orders}">Sifarislerim</a>
-<a class="btn btn-danger" th:href="@{/logout}">Cixis</a>
+<a th:if="${username}" class="btn btn-success" th:href="@{/orders}">Sifarislerim</a>
+<a th:if="${username}" class="btn btn-danger" th:href="@{/logout}">Cixis</a>
+<a th:unless="${username}" class="btn btn-success" th:href="@{/show-login}">Giris</a>
 </div>
 </body>
 </html>
