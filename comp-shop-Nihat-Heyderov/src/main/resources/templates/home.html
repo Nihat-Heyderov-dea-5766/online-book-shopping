@@ -1,0 +1,21 @@
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>HomePage</title>
+<meta charset="utf-8">
+</head>
+<body>
+<div class="container ">
+<h1>Kompyuter alış-veriş saytına xoş gəlmisiniz</h1>
+<h4 style="background-color:green;">Istifadeci adi:<span></span></h4>
+<a th:href="@{/computers}" class="btn btn-success">Kompyuterlerim</a>
+<a th:href="@{/computers-shopping}"class="btn btn-danger">Kompyuter alis-verisi</a>
+<a th:href="@{/login}"class="btn btn-primary">Giris</a>
+<a th:href="@{/logout}"class="btn btn-warning">Cixis</a>
+</div>
+</body>
+</html>
