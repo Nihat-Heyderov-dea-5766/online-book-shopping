@@ -10,11 +10,15 @@
 
 </head>
 <body>
-
+<script>
+$(document).ready(function() {
+	$('#computer-id ').DataTable();
+	});
+</script>
 <div class="container">
 <a class="btn btn-danger" th:href="@{/}">Evvele</a>
 <a class="btn btn-success" th:href="@{/computers/new}">Yeni Kompyuter</a>
-<table class="table table-bordered">
+<table id="computer-id" class="table table-bordered">
 <thead>
 <tr>
 <th>ID</th><th>Marka</th><th>Model</th><th>Tesvir</th><th>Status</th><th>Sekil</th><th>əməli yaddaşı</th><th>mərkəzi prosessoru</th><th>daimi yaddaşı</th><th>daimi yaddaş tipi</th><th>əməliyyat sistemi</th><th>videokart</th><th>Emeliyyat</th>

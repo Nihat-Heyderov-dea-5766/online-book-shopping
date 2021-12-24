@@ -7,41 +7,56 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Customer</title>
 <meta charset="utf-8">
-<style>
-.computer{height:400px;box-sizing:border-box;border:3px solid green;padding:10px;}
-.computer-image{display:block;width:100%;height:200px;background-color:gray;}
-.computer-marka::before{content:'Marka:';}
-.computer-model::before{content:'Model:';}
-.computer-description::before{content:'Tesvir:';}
-.computer-status::before{content:'Status:';}
-.computer-ram::before{content:'Ram:';}
-.computer-rom::before{content:'Rom:';}
-.computer-cd::before{content:'CD:';}
-.computer-operationsystem::before{content:'EmeliyyatSistemi:';}
-.computer-videocard::before{content:'VideoKart:';}
-.computer-username::before{content:'IsdifadeciAdi:';}
-.computer-price::before{content:'Qiymet:';}
-</style>
+<link rel="stylesheet" th:href="@{/style/customer.css}">
 </head>
 <body>
 <div id="main-content">
-<div class="computer-container" th:each="computer :: ${computers}">
-<div class="computer">
-<span class="computer-image"></span>
-<span class="computer-marka"></span>
-<span class="computer-model"></span>
-<span class="computer-description"></span>
-<span class="computer-status"></span>
-<span class="computer-ram"></span>
-<span class="computer-cpu"></span>
-<span class="computer-rom"></span>
-<span class="computer-cd"></span>
-<span class="computer-operationsystem"></span>
-<span class="computer-videocard"></span>
-<span class="computer-username"></span>
-<span class="computer-price"></span>
 </div>
-</div>
-</div>
+<script >
+var xht = new XmlHttpRequest();
+xht.onreadystatechange = function(){
+	if(this.readyState == 4 && this.status == 200){
+		var responseJSON = this.responsText;
+		var computersArray = JSON.parse(responseJSON);
+		console.log(computersArray)
+	}
+};
+xht.open("GET","rest/computers",true);
+xht.send();
+
+
+var mainContent=document.getElementById('main-content');
+var mainContentHTML="";
+for(var i=0;i<computersArray.length;i++){
+var computer=computersArray[i];
+mainContentHTML+="<div class='computer-container'>";
+mainContentHTML+="<div class='computer'>";
+mainContentHTML+="<span class='computer-image'></span>";
+mainContentHTML+="<span class='computer-marka' title='"+
+computer.marka+"'>"+computer.marka+"</span>";
+mainContentHTML+="<span class='computer-model' title='"+
+computer.model+"'>"+computer.model+"</span>"
+mainContentHTML+="<span class='computer-description' title='"+
+computer.description+"'>"+computer.description+"</span>";
+mainContentHTML+="<span class='computer-status' title='"+
+computer.status+"'>"+computer.status+"</span>";
+mainContentHTML+="<span class='computer-ram' title='"+
+computer.ram+"'>"+computer.ram+"</span>";
+mainContentHTML+="<span class='computer-cpu' title='"+
+computer.cpu+"'>"+computer.cpu+"</span>";
+mainContentHTML+="<span class='computer-rom' title='"+
+computer.rom+"'>"+computer.rom+"</span>";
+mainContentHTML+="<span class='computer-cd' title='"+
+computer.cd+"'>"+computer.cd+"</span>";
+mainContentHTML+="<span class='computer-operationsystem' title='"+
+computer.operationsystem+"'>"+computer.operationsystem+"</span>";
+mainContentHTML+="<span class='computer-videocard' title='"+
+computer.videocard+"'>"+computer.videocard+"</span>";
+mainContentHTML+="<span class='computer-price' title='"+
+computer-price+"'>"+computer-price+"</span>";
+
+}
+mainContent.innerHTML=mainContentHTML;
+</script>
 </body>
 </html>

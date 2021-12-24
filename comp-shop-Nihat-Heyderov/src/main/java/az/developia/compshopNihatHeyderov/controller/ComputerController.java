@@ -29,8 +29,8 @@ private ComputerDAO computerDAO;
 
 @GetMapping(path="/computers")
 public String showComputers(Model model) {
-	List<Computer> computer = computerDAO.findAll();
-	model.addAttribute("computers",computer);
+	List<Computer> computers = computerDAO.findAll();
+	model.addAttribute("computers",computers);
 	List<String> Liststatus = Arrays.asList("Yeni","Kohne");
 	model.addAttribute("status",Liststatus);
 return "computers";

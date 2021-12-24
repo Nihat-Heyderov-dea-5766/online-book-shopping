@@ -1,0 +1,13 @@
+.computer{height:400px;box-sizing:border-box;border:3px solid green;padding:10px;}
+.computer-image{display:block;width:100%;height:200px;background-color:gray;}
+.computer-marka::before{content:'Marka:';}
+.computer-model::before{content:'Model:';}
+.computer-description::before{content:'Tesvir:';}
+.computer-status::before{content:'Status:';}
+.computer-ram::before{content:'Ram:';}
+.computer-rom::before{content:'Rom:';}
+.computer-cd::before{content:'CD:';}
+.computer-operationsystem::before{content:'EmeliyyatSistemi:';}
+.computer-videocard::before{content:'VideoKart:';}
+.computer-username::before{content:'IsdifadeciAdi:';}
+.computer-price::before{content:'Qiymet:';}

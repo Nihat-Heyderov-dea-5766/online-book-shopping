@@ -14,6 +14,10 @@
 <div class="container-fluid">
 <form th:action="@{/computers/new-computer-proccess}" th:object="${computer}" method="POST">
 <div class="form-group">
+
+<input type="hidden"  th:field="*{id}"/>
+</div>
+<div class="form-group">
 <label for="computer-marka">Marka</label>
 <input id="computer-marka" name="marka" th:field="*{marka}" class="form-control">
 <span class="error-message" th:if="${#fields.hasErrors('marka')}" th:errors="*{marka}"></span>
@@ -75,6 +79,11 @@
 <label for="computer-vc">OperationSystem</label>
 <input id="computer-vc" name="VideoCard" th:field="*{VideoCard}" class="form-control">
 <span class="error-message" th:if="${#fields.hasErrors('VideoCard')}" th:errors="*{VideoCard}"></span>
+</div>
+<div class="form-group">
+<label for="computer-image">Sekil</label>
+<input id="computer-image" name="image" th:field="*{image}" class="form-control">
+<span class="error-message" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
 </div>
 </form>
 <input class="btn btn-success" type="submit" value="yadda saxla">
