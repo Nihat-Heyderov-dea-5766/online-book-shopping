@@ -12,7 +12,8 @@
 <body>
 <a class="btn btn-info" th:href="@{/}">Evvele</a>
 <div class="container-fluid">
-<form th:action="@{/computers/new-computer-proccess}" th:object="${computer}" method="POST">
+<form th:action="@{/computers/new-computer-proccess}" th:object="${computer}" 
+enctype="multipart/from-data" method="POST">
 <div class="form-group">
 
 <input type="hidden"  th:field="*{id}"/>
@@ -82,8 +83,8 @@
 </div>
 <div class="form-group">
 <label for="computer-image">Sekil</label>
-<input id="computer-image" name="image" th:field="*{image}" class="form-control">
-<span class="error-message" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+<input id="computer-image"  type="file" class="form-control" name="imageFile"
+accept="image/x-png,image/jpeg,image/jpg">
 </div>
 </form>
 <input class="btn btn-success" type="submit" value="yadda saxla">

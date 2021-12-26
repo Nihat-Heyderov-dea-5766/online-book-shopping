@@ -43,6 +43,11 @@ public class UserDAO {
 			 ps.setString(6, user.getSurname());
 			 ps.executeUpdate();
 			 ps.close();
+			 ps = conn.prepareStatement("Insert into authorities (username,authority)values(?,?)");
+			 ps.setString(1,user.getUsername());
+			 ps.setString(2, "ROLE_ADMIN");
+			 ps.executeUpdate();
+			 ps.close();
 		 }
 		 conn.close();
 	 }catch(Exception e) {

@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.config.JpaRepositoryConfigExtensi
 import az.developia.compshopNihatHeyderov.model.Computer;
 
 public interface ComputerDAO extends JpaRepository<Computer,Integer>{
-
+public List<Computer> findAllByUsername(String username);
   
 }

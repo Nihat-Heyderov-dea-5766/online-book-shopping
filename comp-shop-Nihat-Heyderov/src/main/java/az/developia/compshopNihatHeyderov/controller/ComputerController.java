@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import az.developia.compshopNihatHeyderov.config.MySession;
 import az.developia.compshopNihatHeyderov.dao.ComputerDAO;
+import az.developia.compshopNihatHeyderov.file.StorageService;
 import az.developia.compshopNihatHeyderov.model.Computer;
 
 
@@ -26,13 +30,20 @@ public class ComputerController {
 	@Autowired
 private ComputerDAO computerDAO;
 	
+	@Autowired
+	private MySession mySession;
 
+	@Autowired
+	private StorageService storageService;
+	
 @GetMapping(path="/computers")
 public String showComputers(Model model) {
-	List<Computer> computers = computerDAO.findAll();
+	//List<Computer> computers = computerDAO.findAll();
+	List<Computer> computers = computerDAO.findAllByUsername(mySession.getUsername());
 	model.addAttribute("computers",computers);
 	List<String> Liststatus = Arrays.asList("Yeni","Kohne");
 	model.addAttribute("status",Liststatus);
+	model.addAttribute("username","Isdifadeci adi:"+mySession.getUsername());
 return "computers";
 }
 
@@ -44,13 +55,21 @@ public String openNewCompPage(Model model) {
 }
 
 @PostMapping(path="/computers/new-computer-proccess")
-public String saveComputer(@Valid @ModelAttribute(name="computer")Computer computer,Model model,BindingResult result) {											
+public String saveComputer(@Valid @ModelAttribute(name="computer")Computer computer,Model model,BindingResult result,
+		@RequestParam(value="imageFile",required=false)MultipartFile imageFile) {											
 	if(result.hasErrors()) {
 		return "new-computer";
 	}
+	computer.setUsername(mySession.getUsername());
+	if(imageFile.isEmpty() && computer.getId()!=null) {
+		computer.setImage(computerDAO.findById(computer.getId()).get().getImage());
+	}else {
+		computer.setImage(storageService.store(imageFile));
+	}
+	computerDAO.save(computer);
 	List<Computer> computers = computerDAO.findAll();
 	model.addAttribute("computers",computers);
-	computerDAO.save(computer);
+	
 	return "redirect:/computers";
 	
 }

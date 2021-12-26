@@ -7,11 +7,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>HomePage</title>
 <meta charset="utf-8">
+<style>
+#username{display:inline-block;padding:5px;font-weight: bold;}
+</style>
 </head>
 <body>
 <div class="container ">
 <h1>Kompyuter alış-veriş saytına xoş gəlmisiniz</h1>
-<h4 style="background-color:green;">Istifadeci adi:<span></span></h4>
+<span id="username" th:text="username"></span>
 <a th:href="@{/computers}" class="btn btn-success">Kompyuterlerim</a>
 <a th:href="@{/computers-shopping}"class="btn btn-danger">Kompyuter alis-verisi</a>
 <a th:href="@{/login}"class="btn btn-primary">Giris</a>

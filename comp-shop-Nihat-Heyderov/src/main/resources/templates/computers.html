@@ -31,7 +31,7 @@ $(document).ready(function() {
 <td th:text="${computer.model}"><td>
 <td th:text="${computer.description}"><td>
 <td th:text="${computer.status}"><td>
-<td th:text="${computer.image}"><td>
+<td ><img class="book-image" th:src="@{'/files/'+${computer.image}}"><td>
 <td th:text="${computer.ram}"><td>
 <td th:text="${computer.cpu}"><td>
 <td th:text="${computer.rom}"><td>
