@@ -1,62 +1,58 @@
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<title>Customer</title>
 <meta charset="utf-8">
-<link rel="stylesheet" th:href="@{/style/customer.css}">
+<title>Alıcı</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link th:href="@{/styles/customer.css}" rel="stylesheet" />
+<style>
+</style>
 </head>
 <body>
-<div id="main-content">
-</div>
-<script >
-var xht = new XmlHttpRequest();
-xht.onreadystatechange = function(){
-	if(this.readyState == 4 && this.status == 200){
-		var responseJSON = this.responsText;
-		var computersArray = JSON.parse(responseJSON);
-		console.log(computersArray)
-	}
-};
-xht.open("GET","rest/computers",true);
-xht.send();
+	 
+	<div id="main-content">
+		<div class="computer-container" th:each="computer : ${computers}">
+			<div class="computer">
+			
+			
+			
+				 
+				
+				
+				
+				<span class="computer-brand" th:text="${computer.marka}"
+					th:title="${computer.marka}"></span> 
+					
+					
+					
+					<span class="computer-model"
+					th:text="${computer.model}" 
+					th:title="${computer.model}"></span>
 
 
-var mainContent=document.getElementById('main-content');
-var mainContentHTML="";
-for(var i=0;i<computersArray.length;i++){
-var computer=computersArray[i];
-mainContentHTML+="<div class='computer-container'>";
-mainContentHTML+="<div class='computer'>";
-mainContentHTML+="<span class='computer-image'></span>";
-mainContentHTML+="<span class='computer-marka' title='"+
-computer.marka+"'>"+computer.marka+"</span>";
-mainContentHTML+="<span class='computer-model' title='"+
-computer.model+"'>"+computer.model+"</span>"
-mainContentHTML+="<span class='computer-description' title='"+
-computer.description+"'>"+computer.description+"</span>";
-mainContentHTML+="<span class='computer-status' title='"+
-computer.status+"'>"+computer.status+"</span>";
-mainContentHTML+="<span class='computer-ram' title='"+
-computer.ram+"'>"+computer.ram+"</span>";
-mainContentHTML+="<span class='computer-cpu' title='"+
-computer.cpu+"'>"+computer.cpu+"</span>";
-mainContentHTML+="<span class='computer-rom' title='"+
-computer.rom+"'>"+computer.rom+"</span>";
-mainContentHTML+="<span class='computer-cd' title='"+
-computer.cd+"'>"+computer.cd+"</span>";
-mainContentHTML+="<span class='computer-operationsystem' title='"+
-computer.operationsystem+"'>"+computer.operationsystem+"</span>";
-mainContentHTML+="<span class='computer-videocard' title='"+
-computer.videocard+"'>"+computer.videocard+"</span>";
-mainContentHTML+="<span class='computer-price' title='"+
-computer-price+"'>"+computer-price+"</span>";
+<span class="computer-price"
+					th:text="${computer.price+' AZN'}"
+					th:title="${computer.price}"
+					></span>
+					
+					 
+					
+					
+				 
+					
+					
+					
+					
+				<div class="details-btn-div">
+					<a class="btn btn-primary"
+						th:href="@{/computers/details/{id}(id=${computer.id})}"
+						target="_blank">Ətraflı</a>
+				</div>
+			</div>
+		</div>
 
-}
-mainContent.innerHTML=mainContentHTML;
-</script>
+
+	</div>
 </body>
 </html>

@@ -31,8 +31,7 @@ private ComputerDAO computerDAO;
 public String showComputers(Model model) {
 	List<Computer> computers = computerDAO.findAll();
 	model.addAttribute("computers",computers);
-	List<String> Liststatus = Arrays.asList("Yeni","Kohne");
-	model.addAttribute("status",Liststatus);
+	
 return "computers";
 }
 
@@ -40,12 +39,16 @@ return "computers";
 public String openNewCompPage(Model model) {
 	Computer computer = new Computer();
 	model.addAttribute("computer",computer);
+	List<String> Liststatus = Arrays.asList("Yeni","Kohne");
+	model.addAttribute("Liststatus",Liststatus);
 	return "new-computer";
 }
 
 @PostMapping(path="/computers/new-computer-proccess")
-public String saveComputer(@Valid @ModelAttribute(name="computer")Computer computer,Model model,BindingResult result) {											
+public String saveComputer(@Valid @ModelAttribute(name="computer")Computer computer,BindingResult result,Model model) {											
 	if(result.hasErrors()) {
+		List<String> Liststatus = Arrays.asList("Yeni","Kohne");
+		model.addAttribute("Liststatus",Liststatus);
 		return "new-computer";
 	}
 	List<Computer> computers = computerDAO.findAll();

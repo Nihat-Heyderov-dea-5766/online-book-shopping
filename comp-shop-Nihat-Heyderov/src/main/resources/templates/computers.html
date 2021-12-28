@@ -25,7 +25,7 @@ $(document).ready(function() {
 <tr>
 </thead>
 <tbody>
-<tr th:each="computer :: ${computers}">
+<tr th:each="computer : ${computers}">
 <td th:text="${computer.id}"><td>
 <td th:text="${computer.marka}"><td>
 <td th:text="${computer.model}"><td>

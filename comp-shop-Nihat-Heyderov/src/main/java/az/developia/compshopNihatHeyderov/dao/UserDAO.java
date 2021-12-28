@@ -34,14 +34,24 @@ public class UserDAO {
 		 }else {
 			 rs.close();	 
 			 ps.close(); 
-			 ps = conn.prepareStatement("Insert into users(username,password,email,phone,name,surname) values (?,?,?,?,?,?) ");
+			 ps = conn.prepareStatement("Insert into users (username,password,email,phone,name,surname,enabled) values (?,?,?,?,?,?,?) ");
 			 ps.setString(1, user.getUsername());
-			 ps.setString(2, "{bcrypte}"+passwordEncoder.encode(user.getPassword()));
+			 ps.setString(2, "{bcrypt}"+passwordEncoder.encode(user.getPassword()));
 			 ps.setString(3, user.getEmail());
 			 ps.setString(4, user.getPhone());
 			 ps.setString(5, user.getName());
 			 ps.setString(6, user.getSurname());
+			 ps.setByte(7, (byte)1);
 			 ps.executeUpdate();
+			 
+			 
+			 ps = conn.prepareStatement("Insert into authorities (username,authority) values (?,?) ");
+			 ps.setString(1, user.getUsername());
+			 ps.setString(2, "seller");
+			 
+			 ps.executeUpdate();
+			 
+			 
 			 ps.close();
 		 }
 		 conn.close();
