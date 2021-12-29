@@ -58,7 +58,7 @@ public String saveComputer(@Valid @ModelAttribute(name="computer")Computer compu
 	
 }
 
-@GetMapping(path="/computer/delete/{id}")
+@GetMapping(path="/computers/delete/{id}")
 public String computerDelete(@PathVariable(name="id")Integer id,Model model) {
 	boolean computerExits = computerDAO.findById(id).isPresent();
 	if(computerExits) {
@@ -69,7 +69,7 @@ public String computerDelete(@PathVariable(name="id")Integer id,Model model) {
 	return "redirect:/computers";
 }
 
-@GetMapping(path="/computer/edit/{id}")
+@GetMapping(path="/computers/edit/{id}")
 public String computerUpdate(@PathVariable(name="id")Integer id,Model model) {
    Optional<Computer> computerOptional = computerDAO.findById(id);
    boolean compExits = computerOptional.isPresent();
