@@ -43,7 +43,7 @@ public class UserDAO {
 			 ps.setString(6, user.getSurname());
 			 ps.setByte(7, (byte)1);
 			 ps.executeUpdate();
-			
+			ps.close();
 			 
 			 ps = conn.prepareStatement("Insert into authorities (username,authority) values (?,?) ");
 			 ps.setString(1, user.getUsername());
