@@ -2,49 +2,83 @@
 <head>
 <title>Computers</title>
 <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-<script>
-$(document).ready(function() {
-	$('#computer-id ').DataTable();
-	});
-</script>
 <div class="container">
 <a class="btn btn-danger" th:href="@{/}">Evvele</a>
 <a class="btn btn-success" th:href="@{/computers/new}">Yeni Kompyuter</a>
-<table id="computer-id" class="table table-bordered">
-<thead>
-<tr>
-<th>ID</th><th>Marka</th><th>Model</th><th>Tesvir</th><th>Status</th><th>Sekil</th><th>əməli yaddaşı</th><th>mərkəzi prosessoru</th><th>daimi yaddaşı</th><th>daimi yaddaş tipi</th><th>əməliyyat sistemi</th><th>videokart</th><th>Emeliyyat</th>
-<tr>
-</thead>
-<tbody>
-<tr th:each="computer :: ${computers}">
-<td th:text="${computer.id}"><td>
-<td th:text="${computer.marka}"><td>
-<td th:text="${computer.model}"><td>
-<td th:text="${computer.description}"><td>
-<td th:text="${computer.status}"><td>
-<td ><img class="book-image" th:src="@{'/files/'+${computer.image}}"><td>
-<td th:text="${computer.ram}"><td>
-<td th:text="${computer.cpu}"><td>
-<td th:text="${computer.rom}"><td>
-<td th:text="${computer.cd}"><td>
-<td th:text="${computer.operationsystem}"><td>
-<td th:text="${computer.videocard}"><td>
-<td>
-<a th:href="@{/computers/delete/{id} (id=${computer.id})}" class="btn btn-danger" >Sil</a>
-<a th:href="@{/computer/edit/{id} (id=${computer.id})}" class="btn btn-success">Redakte</a>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
+	<script>
+		$(document).ready(function() {
+			$('#computer-id ').DataTable();
+		});
+	</script>
+	<div class="container">
+		<a class="btn btn-danger" th:href="@{/}">Evvele</a> <a
+			class="btn btn-success" th:href="@{/computers/new}">Yeni
+			Kompyuter</a>
+		<table id="computer-id" class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Marka</th>
+					<th>Model</th>
+					<th>Tesvir</th>
+					<th>Status</th>
+					<th>Sekil</th>
+					<th>əməli yaddaşı</th>
+					<th>mərkəzi prosessoru</th>
+					<th>daimi yaddaşı</th>
+					<th>daimi yaddaş tipi</th>
+					<th>əməliyyat sistemi</th>
+					<th>videokart</th>
+					<th>Emeliyyat</th>
+				<tr>
+			</thead>
+			<tbody>
+				<tr th:each="computer : ${computers}">
+					<td th:text="${computer.id}">
+					</td>
+					<td th:text="${computer.marka}">
+					</td>
+					<td th:text="${computer.model}">
+					</td>
+					<td th:text="${computer.description}">
+					</td>
+					<td th:text="${computer.status}">
+					</td>
+					<td th:text="${computer.image}">
+					</td>
+					<td th:text="${computer.ram}">
+					</td>
+					<td th:text="${computer.cpu}">
+					</td>
+					<td th:text="${computer.rom}">
+					</td>
+					<td th:text="${computer.cd}">
+					</td>
+					<td th:text="${computer.operationsystem}">
+					</td>
+					<td th:text="${computer.videocard}">
+					</td>
+					<td><a th:href="@{/computers/delete/{id} (id=${computer.id})}"
+						class="btn btn-danger">Sil</a> <a
+						th:href="@{/computers/edit/{id} (id=${computer.id})}"
+						class="btn btn-success">Redakte</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 </body>
 </html>

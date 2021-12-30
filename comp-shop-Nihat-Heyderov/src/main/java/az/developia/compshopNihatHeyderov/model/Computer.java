@@ -16,8 +16,7 @@ public class Computer {
 	@Size(min=1,max=30,message="1 simvoldan az 30 simvoldan coz ola bilmez")
   private String marka;
   private String model;
-	@NotEmpty(message="bos qoymaq olmaz")
-	@Size(min=0,max=10000,message="qiymet 10000 cox olam bilmez")
+	 
   private Integer price;
   private String description;
   private String status;
