@@ -22,6 +22,6 @@ public class CustomerController {
 	public String showCustomerPage(Model model) {
 		List<Computer> computers = computerDAO.findAll();
 		model.addAttribute("computers",computers);
-		return "Customer";
+		return "customer";
 	}
 }

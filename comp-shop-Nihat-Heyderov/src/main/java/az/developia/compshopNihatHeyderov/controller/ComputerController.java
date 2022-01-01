@@ -64,16 +64,15 @@ public String saveComputer(@Valid @ModelAttribute(name="computer")Computer compu
 		model.addAttribute("Liststatus",Liststatus);
 		return "new-computer";
 	}
+computer.setUsername(mySession.getUsername());
 
 	if(imageFile.isEmpty() && computer.getId()!=null) {
-		computer.setImage(computerDAO.findById(computer.getId()).get().getImage());
-	}else {
-		computer.setImage(storageService.store(imageFile));
-	}
-	computerDAO.save(computer);
+		computer.setImage(computerDAO.findById(computer.getId()).get().getImage());}else {
+		computer.setImage(storageService.store(imageFile));}
+	
 	List<Computer> computers = computerDAO.findAll();
 	model.addAttribute("computers",computers);
-	
+	computerDAO.save(computer);
 	return "redirect:/computers";
 	
 }

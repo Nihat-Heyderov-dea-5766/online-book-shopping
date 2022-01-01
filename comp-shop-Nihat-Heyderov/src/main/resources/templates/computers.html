@@ -11,8 +11,7 @@
 </head>
 <body>
 <div class="container">
-<a class="btn btn-danger" th:href="@{/}">Evvele</a>
-<a class="btn btn-success" th:href="@{/computers/new}">Yeni Kompyuter</a>
+
 </div>
 	<script>
 		$(document).ready(function() {
@@ -53,7 +52,8 @@
 					</td>
 					<td th:text="${computer.status}">
 					</td>
-					<td th:text="${computer.image}">
+					<td >
+					<img src="@{'/files/'+${computer.image}}">
 					</td>
 					<td th:text="${computer.ram}">
 					</td>

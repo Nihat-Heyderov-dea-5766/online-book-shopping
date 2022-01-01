@@ -14,7 +14,7 @@
 <body>
 <div class="container ">
 <h1>Kompyuter alış-veriş saytına xoş gəlmisiniz</h1>
-<span id="username" th:text="username"></span>
+<h2><span id="username" th:text="${username}"></span></h2>
 <a th:href="@{/computers}" class="btn btn-success">Kompyuterlerim</a>
 <a th:href="@{/computers-shopping}"class="btn btn-danger">Kompyuter alis-verisi</a>
 <a th:href="@{/show-login}"class="btn btn-primary">Giris</a>

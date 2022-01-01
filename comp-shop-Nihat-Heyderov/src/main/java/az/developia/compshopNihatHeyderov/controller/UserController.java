@@ -45,7 +45,7 @@ public class UserController {
 		}
 		boolean userExits = userDAO.createUser(user);
 		if(userExits) {
-			model.addAttribute("userCreated","");
+			model.addAttribute("userExits","");
 			return "creat-account";
 		}else {
 			userDAO.createUser(user);
