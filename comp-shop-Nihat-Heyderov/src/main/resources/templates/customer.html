@@ -6,31 +6,36 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	
-<link th:href="@{/styles/customer.css}" rel="stylesheet" />
+<link th:href="@{/style/customer.css}" rel="stylesheet" />
 <style>
 </style>
 </head>
 <body>
-	 
+<br>
+<a th:href="@{/}" class="btn btn-danger">Ana Səifə</a>
+	 <br>
 	<div id="main-content">
-		<div class="computer-container" th:each="computer : ${computers}">
+		<div class="computer-container" style="margin:0px 100px" th:each="computer : ${computers}">
+		<div class="row">
+		<div class="col-sm-4">
 			<div class="computer">
 			
 			
 			
-				 
-				
+				 <img th:src="@{'/files/'+${computer.image}}">
+					<br>
 				
 				
 				<span class="computer-brand" th:text="${computer.marka}"
 					th:title="${computer.marka}"></span> 
 					
-					
+					<br>
 					
 					<span class="computer-model"
 					th:text="${computer.model}" 
 					th:title="${computer.model}"></span>
-
+                       
+                       <br>
 
 <span class="computer-price"
 					th:text="${computer.price+' AZN'}"
@@ -38,7 +43,7 @@
 					></span>
 					
 					 
-					
+					<br>
 					
 				 
 					
@@ -49,6 +54,8 @@
 					<a class="btn btn-primary"
 						th:href="@{/computers/details/{id}(id=${computer.id})}"
 						target="_blank">Ətraflı</a>
+				</div>
+				</div>
 				</div>
 			</div>
 		</div>

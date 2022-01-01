@@ -19,9 +19,11 @@
 		});
 	</script>
 	<div class="container">
+	<br>
 		<a class="btn btn-danger" th:href="@{/}">Evvele</a> <a
 			class="btn btn-success" th:href="@{/computers/new}">Yeni
 			Kompyuter</a>
+			<br><br>
 		<table id="computer-id" class="table table-bordered">
 			<thead>
 				<tr>
@@ -53,7 +55,7 @@
 					<td th:text="${computer.status}">
 					</td>
 					<td >
-					<img src="@{'/files/'+${computer.image}}">
+					<img th:src="@{'/files/'+${computer.image}}">
 					</td>
 					<td th:text="${computer.ram}">
 					</td>

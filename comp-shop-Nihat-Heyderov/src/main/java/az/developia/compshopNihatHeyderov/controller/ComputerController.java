@@ -41,8 +41,6 @@ public String showComputers(Model model) {
 	//List<Computer> computers = computerDAO.findAll();
 	List<Computer> computers = computerDAO.findAllByUsername(mySession.getUsername());
 	model.addAttribute("computers",computers);
-	model.addAttribute("username","Isdifadeci adi:"+mySession.getUsername());
-
 return "computers";
 }
 
