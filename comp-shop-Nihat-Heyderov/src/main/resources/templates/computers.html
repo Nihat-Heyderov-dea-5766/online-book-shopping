@@ -32,13 +32,13 @@
 					<th>Model</th>
 					<th>Tesvir</th>
 					<th>Status</th>
-					<th>Sekil</th>
 					<th>əməli yaddaşı</th>
 					<th>mərkəzi prosessoru</th>
 					<th>daimi yaddaşı</th>
 					<th>daimi yaddaş tipi</th>
 					<th>əməliyyat sistemi</th>
 					<th>videokart</th>
+					<th>Sekil</th>
 					<th>Emeliyyat</th>
 				<tr>
 			</thead>
@@ -54,9 +54,6 @@
 					</td>
 					<td th:text="${computer.status}">
 					</td>
-					<td >
-					<img th:src="@{'/files/'+${computer.image}}">
-					</td>
 					<td th:text="${computer.ram}">
 					</td>
 					<td th:text="${computer.cpu}">
@@ -68,6 +65,9 @@
 					<td th:text="${computer.operationsystem}">
 					</td>
 					<td th:text="${computer.videocard}">
+					</td>
+					<td >
+					<img th:src="@{'/files/'+${computer.image}}">
 					</td>
 					<td><a th:href="@{/computers/delete/{id} (id=${computer.id})}"
 						class="btn btn-danger">Sil</a> <a
