@@ -10,7 +10,7 @@
 </head>
 <body>
 <div style="width:400px;margin:0px auto;">
-<h1>Yeni İstifadəçi</h1>
+<h1 th:text="${header}"></h1>
 <form th:action="@{/authenticate-user}" method="POST" class="form">
 <div th:if="${param.error}" class="alert alert-danger alert-dismissible">
 <button class="close" data-dismiss="alert">&times;</button>

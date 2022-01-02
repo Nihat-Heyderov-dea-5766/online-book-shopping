@@ -26,14 +26,15 @@ public class UserController {
 			model.addAttribute("userCreated","");
 			userCreated=false;
 		}
-			
-		return "custom-login";
+			model.addAttribute("header","Hesaba daxil olmaq");
+			return "custom-login";
 	}
 	
 	@GetMapping(path="/show-creataccount")
 	public String showCreatAccountPage(Model model) {
 		User user = new User();
 		model.addAttribute("user",user);
+		model.addAttribute("header","Yeni Istifadeci");
 		return "creat-account";
 	}
 	
