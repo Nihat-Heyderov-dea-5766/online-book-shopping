@@ -15,18 +15,54 @@
 
 <div class="container">    
     
-  <table class="table table-bordered" style="">
+  <table class="table table-bordered" >
  
-   
-      <tr >
+    <tr th:each="computer : ${computers}">
+          <img th:src="@{'/files/'+${computer.image}}">
+      </tr>
+      <tr th:each="computer : ${computers}">
      <td>Marka</td>
-        <td>Model</td>
-        <td>Qiymet</td>  
+          <td th:text="${computer.marka}"></td>
       </tr>
        <tr th:each="computer : ${computers}">
-     <td th:text="${computer.marka}"></td>
-        <td th:text="${computer.model}"></td>
+    <td>Model</td>
+        <td th:text="${computer.model}"></td>  
+      </tr>
+      <tr th:each="computer : ${computers}">
+       <td>Qiymet</td>
         <td th:text="${computer.price}"></td>  
+      </tr>
+      <tr th:each="computer : ${computers}">
+       <td>Tesvir</td>
+        <td th:text="${computer.description}"></td>  
+      </tr>
+         <tr th:each="computer : ${computers}">
+       <td>Status</td>
+        <td th:text="${computer.status}"></td>  
+      </tr>
+       <tr th:each="computer : ${computers}">
+       <td>RAM</td>
+        <td th:text="${computer.ram}"></td>  
+      </tr>
+      <tr th:each="computer : ${computers}">
+       <td>CPU</td>
+        <td th:text="${computer.cpu}"></td>  
+      </tr>
+        <tr th:each="computer : ${computers}">
+       <td>ROM</td>
+        <td th:text="${computer.rom}"></td>  
+      </tr>  
+      <tr th:each="computer : ${computers}">
+       <td>Cd</td>
+        <td th:text="${computer.cd}"></td>  
+      </tr>
+      <tr th:each="computer : ${computers}">
+       <td>OperationSystem</td>
+        <td th:text="${computer.operationsystem}"></td>  
+      </tr>
+        <tr th:each="computer : ${computers}">
+       <td>VideoKard</td>
+        <td th:text="${computer.videocard}"></td>  
       </tr>
   </table>
 </div>
