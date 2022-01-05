@@ -12,7 +12,7 @@
 </head>
 <body>
 <br>
-<a th:href="@{/}" class="btn btn-danger">Ana Səifə</a>
+<a th:href="@{/}" id="home-button" class="btn btn-danger">Ana Səifə</a>
 	 <br>
 	<div id="main-content">
 	<div class="row">
@@ -55,6 +55,7 @@
 					<a class="btn btn-primary"
 						th:href="@{/computers/details/{id}(id=${computer.id})}"
 						target="_blank">Ətraflı</a>
+						<button class="btn btn-success">Sebete at</button>
 				</div>
 				</div>
 				</div>
@@ -63,5 +64,8 @@
 
 
 	</div>
+	<button id="showBasketButton" type="button" class="btn btn-primary">
+  Sebet <span class="badge badge-light">0</span>
+</button>
 </body>
 </html>

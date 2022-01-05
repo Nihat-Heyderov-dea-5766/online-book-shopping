@@ -11,3 +11,11 @@
 .computer-videocard::before{content:'VideoKart:';}
 .computer-username::before{content:'IsdifadeciAdi:';}
 .computer-price::before{content:'Qiymet:';}
+
+#home-button{
+	margin:10px 100px;
+}
+#showBasketButton{
+	
+	position: fixed;
+}
