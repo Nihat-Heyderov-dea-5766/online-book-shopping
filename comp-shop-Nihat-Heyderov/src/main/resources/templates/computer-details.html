@@ -18,7 +18,7 @@
   <table class="table table-bordered" >
  
     <tr th:each="computer : ${computers}">
-          <img th:src="@{'/files/'+${computer.image}}">
+          <img style="width:48%;margin:0px 300px;" th:src="@{'/files/'+${computer.image}}">
       </tr>
       <tr th:each="computer : ${computers}">
      <td>Marka</td>
