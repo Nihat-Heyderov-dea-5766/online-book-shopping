@@ -91,7 +91,11 @@ public String computerUpdate(@PathVariable(name="id")Integer id,Model model) {
    Optional<Computer> computerOptional = computerDAO.findById(id);
    boolean compExits = computerOptional.isPresent();
    Computer computer = new Computer();
+  
+	
 	if(compExits) {
+		 List<String> Liststatus = Arrays.asList("Yeni","Kohne");
+	model.addAttribute("Liststatus",Liststatus);
 		computer = computerOptional.get();
 	}
 	model.addAttribute("computer",computer);

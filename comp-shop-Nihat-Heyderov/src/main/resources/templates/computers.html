@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<link th:href="@{/style/customer.css}">
 </head>
 <body>
 <div class="container">
@@ -44,7 +44,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="computer : ${computers}">
-					<td th:text="${computer.id}">
+					<td  th:text="${computer.id}">
 					</td>
 					<td th:text="${computer.marka}">
 					</td>
@@ -65,9 +65,20 @@
 					<td th:text="${computer.operationsystem}">
 					</td>
 					<td th:text="${computer.videocard}">
-					</td>
+					</td>				 
+					  <div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <img th:src="@{'/files/'+${computer.image}}">
+    </div>
+    </div>
+    </div>
 					<td >
-					<img style="width:140px;" th:src="@{'/files/'+${computer.image}}">
+					<img style="width:150px;" data-toggle="modal" data-target="#myModal" th:src="@{'/files/'+${computer.image}}">
+	
+					  
+	          
+                  
 					</td>
 					<td><a th:href="@{/computers/delete/{id} (id=${computer.id})}"
 						class="btn btn-danger">Sil</a> <a
