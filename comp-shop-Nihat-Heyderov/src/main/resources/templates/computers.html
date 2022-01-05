@@ -67,7 +67,7 @@
 					<td th:text="${computer.videocard}">
 					</td>
 					<td >
-					<img th:src="@{'/files/'+${computer.image}}">
+					<img style="width:140px;" th:src="@{'/files/'+${computer.image}}">
 					</td>
 					<td><a th:href="@{/computers/delete/{id} (id=${computer.id})}"
 						class="btn btn-danger">Sil</a> <a
